@@ -35,14 +35,102 @@ export default class IlkOnbir extends Component {
         mevki: "Stoper",
         source: require("./PlayersPics/SerdarAziz.jpeg"),
       },
+      {
+        id: 3,
+        name: "Simon Falette",
+        age: "23",
+        mevki: "Stoper",
+        source: require("./PlayersPics/Simon Falette.jpg"),
+      },
+      {
+        id: 4,
+        name: "Nabil Dirar",
+        age: "33",
+        mevki: "Sag Bek",
+        source: require("./PlayersPics/Nabil Dirar.jpeg"),
+      },
+      {
+        id: 5,
+        name: "Hasan Ali Kaldirim",
+        age: "32",
+        mevki: "Sol Bek",
+        source: require("./PlayersPics/Hasan Ali Kaldirim.jpeg"),
+      },
+      {
+        id: 6,
+        name: "Emre Belözoglu",
+        age: "37",
+        mevki: "Orta Saha",
+        source: require("./PlayersPics/Emre.jpeg"),
+      },
+      {
+        id: 7,
+        name: "Luiz Gustavo",
+        age: "32",
+        mevki: "Orta Saha",
+        source: require("./PlayersPics/Luis Gustavo.jpeg"),
+      },
+      {
+        id: 8,
+        name: "Ozan Tufan",
+        age: "25",
+        mevki: "Orta Saha",
+        source: require("./PlayersPics/Ozan Tufan.jpeg"),
+      },
+      {
+        id: 9,
+        name: "Deniz Türüç",
+        age: "28",
+        mevki: "Orta Saha",
+        source: require("./PlayersPics/Deniz türüç.jpeg"),
+      },
+      {
+        id: 10,
+        name: "Gary Rodriguez",
+        age: "29",
+        mevki: "Kanat",
+        source: require("./PlayersPics/Gary.jpeg"),
+      },
+      {
+        id: 11,
+        name: "Tolga Cigerci",
+        age: "29",
+        mevki: "Orta Saha",
+        source: require("./PlayersPics/Tolga.jpeg"),
+      },
+      {
+        id: 12,
+        name: "Ferdi",
+        age: "21",
+        mevki: "Stoper",
+        source: require("./PlayersPics/Ferdi.jpeg"),
+      },
+      {
+        id: 13,
+        name: "Mevlüt",
+        age: "33",
+        mevki: "Stoper",
+        source: require("./PlayersPics/Mevlüt.jpeg"),
+      },
+      {
+        id: 14,
+        name: "Vedat",
+        age: "26",
+        mevki: "Stoper",
+        source: require("./PlayersPics/Vedat.jpeg"),
+      },
     ],
   };
 
-  showInfo = (id) => {
-    this.setState({ info: !this.state.info, btn: !this.state.btn });
+  showInfo = (i) => {
+    this.setState({ info: !this.state.info,btn: !this.state.btn});
   };
   
-  btnDisplay = () => {
+  handleClick = event => {
+    event.currentTarget.classList.toggle('active');
+  }
+
+  btnDisplay = (i) => {
     const bouton = this.state.btn  
     if(bouton === true) {
        return <p>SHOW</p>
@@ -54,18 +142,18 @@ export default class IlkOnbir extends Component {
   render() {
     const hideInfo = this.state.info;
 
-    const pl = this.state.players.map((player) => {
+    const pl = this.state.players.map((player,i) => {
       return (
-        <div key={player.id} className="card--content">
+        <div key={i} className="card--content movie" onClick={this.handleClick}>
           <div className="content">
             <img src={player.source} alt="" />
 
             <div class="buttons">
               <p
-                onClick={() => this.showInfo(player.id)} class="btn effect04" data-sm-link-text="INFO"><span>{this.btnDisplay()}</span>
+                onClick={() => this.showInfo(player.id)} key={i} className="btn effect04 movie" data-sm-link-text="INFO"><span>{this.btnDisplay()}</span>
               </p>
               {hideInfo === true ? (
-                <div>
+                <div className="opening">
                   <p>{player.name}</p>
                   <p>{player.age} </p>
                   <p>{player.mevki} </p>
@@ -75,16 +163,33 @@ export default class IlkOnbir extends Component {
               )}
             </div>
           </div>
-        </div>
+          </div>
+        
       );
     });
 
     return (
       <div className="container">
         <section class="card">
-          {pl}
+        {pl}
         </section>
+
+{/*       
+      <div>
+      {
+        this.state.players.map((movie, i) => {
+          return (
+            <div className="movie" onClick={this.handleClick} key={i}>              <p
+                onClick={() => this.showInfo()} key={i} className="btn effect04 movie" data-sm-link-text="INFO"><span></span>
+              </p>
+              <div className="opening">{movie.age}</div>
+              <div className="opening">{movie.mevki}</div>
+            </div>
+          );
+        })}
+      </div> */}
       </div>
+
     );
-  }
+}
 }

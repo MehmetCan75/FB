@@ -151,6 +151,14 @@ button {
           transform: translateY(0) scale(1,1);
 }
 
+.movie .opening {
+  display: none;
+}
+
+.active .opening {
+  display: block
+}
+
 
 
 
