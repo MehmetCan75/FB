@@ -4,7 +4,7 @@ import "./Header.css";
 export default function Header() {
   return (
     <div>
-    <div class="header">
+    <div className="header">
     <div>Fenerbahçe SK</div>
         </div>
     </div>

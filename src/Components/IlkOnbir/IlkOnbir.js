@@ -123,54 +123,65 @@ export default class IlkOnbir extends Component {
   };
 
   showInfo = (i) => {
-    this.setState({ info: !this.state.info,btn: !this.state.btn});
+    this.setState({ info: !this.state.info});
   };
   
   handleClick = event => {
     event.currentTarget.classList.toggle('active');
   }
 
-  btnDisplay = (i) => {
-    const bouton = this.state.btn  
-    if(bouton === true) {
-       return <p>SHOW</p>
-    } else {
-      return <p>HIDE</p>
-    }
+  btnDisplay = (e) => {
+    
+    console.log(e.currentTarget.id)
+
+    this.setState({info: !this.state.info, btn:!this.state.btn})
+ 
   }
 
   render() {
     const hideInfo = this.state.info;
 
-    const pl = this.state.players.map((player,i) => {
+    const pl = this.state.players.map((player,i,e) => {
       return (
-        <div key={i} className="card--content movie" onClick={this.handleClick}>
-          <div className="content">
-            <img src={player.source} alt="" />
-
-            <div class="buttons">
-              <p
-                onClick={() => this.showInfo(player.id)} key={i} className="btn effect04 movie" data-sm-link-text="INFO"><span>{this.btnDisplay()}</span>
-              </p>
-              {hideInfo === true ? (
+        <div key={i}>
+         <p>{player.name}</p>
+         {/* <p onClick={this.btnDisplay} id={player.id}>{player.id}</p> */}
+        <button onClick={this.btnDisplay} id={player.id}>{this.state.btn === true ? "SHOW" : "HIDE"}</button>
+               {hideInfo === true ? (
                 <div className="opening">
-                  <p>{player.name}</p>
-                  <p>{player.age} </p>
-                  <p>{player.mevki} </p>
-                </div>
-              ) : (
-                ""
-              )}
-            </div>
-          </div>
-          </div>
+                   <p>{player.name}</p>
+                   <p>{player.age} </p>
+                   <p>{player.mevki} </p>
+                 </div>
+               ) : null}
+        </div>
+        // <div key={i} className="card--content movie" onClick={this.handleClick}>
+        //   <div className="content">
+        //     <img src={player.source} alt="" />
+
+        //     <div class="buttons">
+        //       <p
+        //         onClick={() => this.showInfo(player[i])} key={player[i]} className="btn effect04 movie" data-sm-link-text="INFO"><span>{this.state.btn === true ? "SHOW" : "HIDE"}</span>
+        //       </p>
+        //       {hideInfo === true ? (
+        //         <div className="opening">
+        //           <p>{player.name}</p>
+        //           <p>{player.age} </p>
+        //           <p>{player.mevki} </p>
+        //         </div>
+        //       ) : (
+        //         ""
+        //       )}
+        //     </div>
+        //   </div>
+        //   </div>
         
-      );
-    });
+      )})
+    
 
     return (
       <div className="container">
-        <section class="card">
+        <section className="card">
         {pl}
         </section>
 
