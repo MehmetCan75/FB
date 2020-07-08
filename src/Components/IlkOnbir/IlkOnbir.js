@@ -141,7 +141,7 @@ export default class IlkOnbir extends Component {
   render() {
     const hideInfo = this.state.info;
 
-    const pl = this.state.players.map((player,i,e) => {
+    const pl = this.state.players.map((player,i) => {
       return (
         <div key={i}>
          <p>{player.name}</p>
