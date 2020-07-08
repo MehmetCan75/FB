@@ -133,48 +133,46 @@ export default class IlkOnbir extends Component {
   btnDisplay = (e) => {
     
     console.log(e.currentTarget.id)
-
-    this.setState({info: !this.state.info, btn:!this.state.btn})
  
   }
 
   render() {
-    const hideInfo = this.state.info;
 
-    const pl = this.state.players.map((player,i) => {
+    const pl = this.state.players.map((player,i,e) => {
       return (
-        <div key={i}>
-         <p>{player.name}</p>
-         {/* <p onClick={this.btnDisplay} id={player.id}>{player.id}</p> */}
-        <button onClick={this.btnDisplay} id={player.id}>{this.state.btn === true ? "SHOW" : "HIDE"}</button>
-               {hideInfo === true ? (
-                <div className="opening">
-                   <p>{player.name}</p>
-                   <p>{player.age} </p>
-                   <p>{player.mevki} </p>
-                 </div>
-               ) : null}
-        </div>
-        // <div key={i} className="card--content movie" onClick={this.handleClick}>
-        //   <div className="content">
-        //     <img src={player.source} alt="" />
-
-        //     <div class="buttons">
-        //       <p
-        //         onClick={() => this.showInfo(player[i])} key={player[i]} className="btn effect04 movie" data-sm-link-text="INFO"><span>{this.state.btn === true ? "SHOW" : "HIDE"}</span>
-        //       </p>
-        //       {hideInfo === true ? (
+        // <div key={player.id}>
+        //  <p>{player.name}</p>
+        //  {/* <p onClick={this.btnDisplay} id={player.id}>{player.id}</p> */}
+        //  <button onClick={this.btnDisplay} id={player.id}>{this.state.btn === true ? "SHOW" : "HIDE"}</button>
+        //        {hideInfo === true ? (
         //         <div className="opening">
-        //           <p>{player.name}</p>
-        //           <p>{player.age} </p>
-        //           <p>{player.mevki} </p>
-        //         </div>
-        //       ) : (
-        //         ""
-        //       )}
-        //     </div>
-        //   </div>
-        //   </div>
+        //            <p>{player.name}</p>
+        //            <p>{player.age} </p>
+        //            <p>{player.mevki} </p>
+        //          </div>
+        //        ) : null}
+        // </div>
+
+        <div key={i} className="card--content movie" onClick={this.handleClick}>
+          <div className="content">
+            <img src={player.source} alt="" />
+
+            <div class="buttons">
+              <p  className="btn effect04"
+                onClick={() => this.showInfo(player[i])} key={player[i]} data-sm-link-text="INFO">
+              </p>
+              
+                <div className="opening">
+                <button>HIDE</button>
+                  <p>{player.name}</p>
+                  <p>{player.age} </p>
+                  <p>{player.mevki} </p>
+                </div>
+          
+              )
+            </div>
+          </div>
+          </div>
         
       )})
     
@@ -184,23 +182,32 @@ export default class IlkOnbir extends Component {
         <section className="card">
         {pl}
         </section>
-
-{/*       
-      <div>
-      {
-        this.state.players.map((movie, i) => {
-          return (
-            <div className="movie" onClick={this.handleClick} key={i}>              <p
-                onClick={() => this.showInfo()} key={i} className="btn effect04 movie" data-sm-link-text="INFO"><span></span>
-              </p>
-              <div className="opening">{movie.age}</div>
-              <div className="opening">{movie.mevki}</div>
-            </div>
-          );
-        })}
-      </div> */}
       </div>
+      
+      
+      //   this.state.players.map((movie, i) => {
+      //     return (
+      //       <div className="container">
+      //       <section className="card">
+      //       <div className="movie card--content" onClick={this.handleClick} key={i}> 
+      //       <div className="content">
+      //       <img src={movie.source} alt="" />
 
-    );
-}
-}
+      //       <div class="buttons">
+      //         <p onClick={() => this.showInfo()} key={i} className="btn effect04 movie" data-sm-link-text="INFO"><span></span>
+      //         </p>
+      //         <div className="opening">
+      //         <p>{movie.age}</p>
+      //         <p>{movie.mevki}</p>
+      //         </div>
+      //       </div>
+
+      //       </div>
+      //       </div>
+      //       </section>
+      //       </div>)})}
+      //       </div>
+    )}}
+ 
+
+
