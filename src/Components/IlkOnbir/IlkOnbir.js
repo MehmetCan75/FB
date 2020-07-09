@@ -26,119 +26,147 @@ export default class IlkOnbir extends Component {
         name: "Altay Bayindir",
         age: "21",
         mevki: "Kaleci",
+        info: false,
         source: require("./PlayersPics/altay-fb1.jpeg"),
+        bouton: true,
       },
       {
         id: 2,
         name: "Serdar Aziz",
         age: "29",
         mevki: "Stoper",
+        info: false,
         source: require("./PlayersPics/SerdarAziz.jpeg"),
+        bouton: true,
       },
       {
         id: 3,
         name: "Simon Falette",
         age: "23",
         mevki: "Stoper",
+        info: false,
         source: require("./PlayersPics/Simon Falette.jpg"),
+        bouton: true,
       },
       {
         id: 4,
         name: "Nabil Dirar",
         age: "33",
         mevki: "Sag Bek",
+        info: false,
         source: require("./PlayersPics/Nabil Dirar.jpeg"),
+        bouton: true,
       },
       {
         id: 5,
-        name: "Hasan Ali Kaldirim",
+        name: "Hasan Ali K.",
         age: "32",
         mevki: "Sol Bek",
+        info: false,
         source: require("./PlayersPics/Hasan Ali Kaldirim.jpeg"),
+        bouton: true,
       },
       {
         id: 6,
         name: "Emre Belözoglu",
         age: "37",
         mevki: "Orta Saha",
+        info: false,
         source: require("./PlayersPics/Emre.jpeg"),
+        bouton: true,
       },
       {
         id: 7,
         name: "Luiz Gustavo",
         age: "32",
         mevki: "Orta Saha",
+        info: false,
         source: require("./PlayersPics/Luis Gustavo.jpeg"),
+        bouton: true,
       },
       {
         id: 8,
         name: "Ozan Tufan",
         age: "25",
         mevki: "Orta Saha",
+        info: false,
         source: require("./PlayersPics/Ozan Tufan.jpeg"),
+        bouton: true,
       },
       {
         id: 9,
         name: "Deniz Türüç",
         age: "28",
         mevki: "Orta Saha",
+        info: false,
         source: require("./PlayersPics/Deniz türüç.jpeg"),
+        bouton: true,
       },
       {
         id: 10,
         name: "Gary Rodriguez",
         age: "29",
         mevki: "Kanat",
+        info: false,
         source: require("./PlayersPics/Gary.jpeg"),
+        bouton: true,
       },
       {
         id: 11,
         name: "Tolga Cigerci",
         age: "29",
         mevki: "Orta Saha",
+        info: false,
         source: require("./PlayersPics/Tolga.jpeg"),
+        bouton: true,
       },
       {
         id: 12,
-        name: "Ferdi",
+        name: "Ferdi Kadioglu",
         age: "21",
         mevki: "Stoper",
+        info: false,
         source: require("./PlayersPics/Ferdi.jpeg"),
+        bouton: true,
       },
       {
         id: 13,
-        name: "Mevlüt",
+        name: "Mevlüt Erdinç",
         age: "33",
         mevki: "Stoper",
+        info: false,
         source: require("./PlayersPics/Mevlüt.jpeg"),
+        bouton: true,
       },
       {
         id: 14,
-        name: "Vedat",
+        name: "Vedat Muriqi",
         age: "26",
         mevki: "Stoper",
+        info: false,
         source: require("./PlayersPics/Vedat.jpeg"),
+        bouton: true,
       },
     ],
   };
 
   showInfo = (i) => {
-    this.setState({ info: !this.state.info});
+    this.setState((state) => ({
+      ...state,
+      players: state.players.map((player, index) =>
+        index === i
+          ? { ...player, info: !player.info, bouton: !player.bouton }
+          : player
+      ),
+    }));
   };
-  
-  handleClick = event => {
-    event.currentTarget.classList.toggle('active');
-  }
 
-  btnDisplay = (e) => {
-    
-    console.log(e.currentTarget.id)
- 
-  }
+  handleClick = (event) => {
+    event.currentTarget.classList.toggle("active");
+  };
 
   render() {
-
-    const pl = this.state.players.map((player,i,e) => {
+    const pl = this.state.players.map((player, i, e) => {
       return (
         // <div key={player.id}>
         //  <p>{player.name}</p>
@@ -158,38 +186,38 @@ export default class IlkOnbir extends Component {
             <img src={player.source} alt="" />
 
             <div class="buttons">
-              <p  className="btn effect04"
-                onClick={() => this.showInfo(player[i])} key={player[i]} data-sm-link-text="INFO">
+              <p
+                className="btn effect04 movie"
+                onClick={() => this.showInfo(i)}
+                key={player[i]}
+                data-sm-link-text="INFO"
+              >
+                <span>{player.bouton === true ? "SHOW" : "HIDE"}</span>
               </p>
-              
+              {player.info && (
                 <div className="opening">
-                <button>HIDE</button>
                   <p>{player.name}</p>
                   <p>{player.age} </p>
                   <p>{player.mevki} </p>
                 </div>
-          
+              )}
               )
             </div>
           </div>
-          </div>
-        
-      )})
-    
+        </div>
+      );
+    });
 
     return (
       <div className="container">
-        <section className="card">
-        {pl}
-        </section>
+        <section className="card">{pl}</section>
       </div>
-      
-      
+
       //   this.state.players.map((movie, i) => {
       //     return (
       //       <div className="container">
       //       <section className="card">
-      //       <div className="movie card--content" onClick={this.handleClick} key={i}> 
+      //       <div className="movie card--content" onClick={this.handleClick} key={i}>
       //       <div className="content">
       //       <img src={movie.source} alt="" />
 
@@ -207,7 +235,6 @@ export default class IlkOnbir extends Component {
       //       </section>
       //       </div>)})}
       //       </div>
-    )}}
- 
-
-
+    );
+  }
+}
